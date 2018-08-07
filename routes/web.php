@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/direct', function () {
+
+    echo "echo str</br>";
+    return "return str";
+});
+
 Route::get('/test', function () {
 
     $view = view('test');
@@ -24,3 +30,15 @@ Route::get('/test', function () {
     return $view;
 
 });
+
+Route::get('/test/id/{id}/pw/{pw}', function ($id, $pw) {
+
+    $view = view('test');
+    $view->greeting = "Hey~ What's up ".$id;
+    $view->name = 'everyone '.$pw;
+
+    return $view;
+
+});
+
+Route::get('mk/{id?}', 'makingCtr@viewing');
