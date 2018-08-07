@@ -11,7 +11,7 @@ class makingCtr extends Controller
     {
         // TODO: Implement __invoke() method.
 
-        return "invoke";
+        return "invoke.";
     }
 
 
