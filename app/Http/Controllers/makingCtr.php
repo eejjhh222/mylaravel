@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class makingCtr extends Controller
 {
@@ -22,5 +23,13 @@ class makingCtr extends Controller
         $view->greeting = "Hey~ What's up ".$id;
 
         return $view;
+    }
+
+    public function selectDB()
+    {
+        $results = DB::select('select * from test');
+        echo "<pre>";
+        print_r($results);
+
     }
 }
