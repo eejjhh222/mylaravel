@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\NewModel;
 
 class makingCtr extends Controller
 {
@@ -31,5 +32,16 @@ class makingCtr extends Controller
         echo "<pre>";
         print_r($results);
 
+    }
+
+    public function useDB(){
+
+        $flights = NewModel::all();
+        echo "start</br><pre>";
+        print_r($flights);
+
+        /*foreach ($flights as $flight) {
+            echo $flight->name;
+        }*/
     }
 }

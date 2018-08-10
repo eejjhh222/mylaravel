@@ -44,3 +44,5 @@ Route::get('/test/id/{id}/pw/{pw}', function ($id, $pw) {
 Route::get('mk/{id?}', 'makingCtr@viewing');
 
 Route::get('sdb', 'makingCtr@selectDB');
+
+Route::get('modeldb', 'makingCtr@useDB');
