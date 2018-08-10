@@ -36,9 +36,12 @@ class makingCtr extends Controller
 
     public function useDB(){
 
-        $flights = NewModel::all();
+//        $flights = NewModel::all(); // 모든내용 select
+        $flights = NewModel::where('id','myid2')
+                              ->get();
+        // ->take(10) // limit 10
         echo "start</br><pre>";
-        print_r($flights);
+        dd($flights);
 
         /*foreach ($flights as $flight) {
             echo $flight->name;
