@@ -7,3 +7,5 @@
  */
 dd($_POST);
 ?>
+
+<meta name="csrf-token" content="{{ csrf_token() }}">

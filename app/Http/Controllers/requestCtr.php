@@ -20,11 +20,8 @@ class requestCtr extends Controller
     }
 
     public function postparams(){
-//        dd($params);
-//        dd($_POST);
         $view = view('ftest/form2');
         return $view;
-
     }
 
     private function dbinsert(){
