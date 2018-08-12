@@ -46,3 +46,9 @@ Route::get('mk/{id?}', 'makingCtr@viewing');
 Route::get('sdb', 'makingCtr@selectDB');
 
 Route::get('modeldb', 'makingCtr@useDB');
+
+Route::get('ftest', 'requestCtr@defaultparams');
+
+Route::get('getftest', 'requestCtr@getparams');
+
+Route::post('postftest', 'requestCtr@postparams');
