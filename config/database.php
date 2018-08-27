@@ -41,13 +41,13 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', '192.168.0.2'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'db_laravel'),
             'username' => env('DB_USERNAME', 'homepage'),
             'password' => env('DB_PASSWORD', 'plusdiet'),
             'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
+            'charset' => 'utf8',
             'collation' => 'utf8_general_ci',
             'prefix' => '',
             'strict' => true,

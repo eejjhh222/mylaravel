@@ -24,6 +24,13 @@ class requestCtr extends Controller
         return $view;
     }
 
+    public function putparams(Request $request){
+        dd($request);
+
+//        $name = $request->input('name');
+//        return $name;
+    }
+
     private function dbinsert(){
 
     }

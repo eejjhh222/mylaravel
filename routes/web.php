@@ -52,3 +52,17 @@ Route::get('ftest', 'requestCtr@defaultparams');
 Route::get('getftest', 'requestCtr@getparams');
 
 Route::post('postftest', 'requestCtr@postparams');
+
+Route::put('putparams', 'requestCtr@putparams');
+
+
+Route::get('join', function () {
+    return view('/join/join');
+});
+Route::post('joinact', 'loginCtr@join');
+
+Route::get('login', function () {
+    return view('/login/login');
+});
+
+Route::post('loginact', 'loginCtr@login');
