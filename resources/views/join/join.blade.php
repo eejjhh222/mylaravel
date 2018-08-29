@@ -10,13 +10,11 @@
 
 login test<br><br>
 
-<form name="postForm" method="post" action="joinact">
+<form name="joinForm" method="post" action="joinact">
     join form<br>
     @csrf
-    <!-- ID : <input type='text' name="id" id="id"><br/> -->
-    ID : <input placeholder="ID" name="id" type="id" autofocus><br/>
     EMAIL : <input placeholder="이메일" name="email" type="email"><br/>
     NAME : <input placeholder="이름" name="name" type="name"><br/>
     PW : <input type='password' name="pw" id="pw"><br/>
-    <input type="submit" value="submit">
+    <input type="submit" value="회원가입">
 </form>

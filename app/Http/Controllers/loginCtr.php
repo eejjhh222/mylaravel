@@ -11,7 +11,6 @@ class loginCtr extends Controller
     //
 
     public function join(Request $request){
-        $id = $request->input('id');
         $name = $request->input('name');
         $email = $request->input('email');
         $pw = $request->input('pw');
@@ -19,7 +18,6 @@ class loginCtr extends Controller
 
         $users = new users;
 
-//        $users->id = $id;
         $users->name = $name;
         $users->email = $email;
         $users->password = Hash::make($pw);
@@ -28,11 +26,14 @@ class loginCtr extends Controller
         $users->save();
 
         echo "<script>alert('회원가입 완료.');</script>";
-        return view('/login/login');
-
+        return redirect()->route('login');
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function login(Request $request){
 //        dd($request);
 
@@ -40,35 +41,49 @@ class loginCtr extends Controller
         $pw = $request->input('pw');
 
         if($this->checkEmail($email) === false){
-            echo "<script>alert('Email정보가 없음.');</script>";
-            return view('/login/login');
+            $url = route('login');
+            echo "<script>alert('Email정보가 없음.');location.href('".$url."');</script>";
+            exit;
         }
 
-        if($this->checkPw($pw) === false){
-            echo "<script>alert('PW가 틀림.');</script>";
-            return view('/login/login');
+        if($this->checkPw($email, $pw) === false){
+            $url = route('login');
+            echo "<script>alert('PW가 틀림.');location.href('".$url."');</script>";
+            exit;
         }
 
-        return view('/login/loginOk');
+        $request->session()->put('email', $email);
 
+        return redirect()->route('loginOk');
     }
 
     private function checkEmail($email){
 //        $req = users::all(); // 모든내용 select
-        $req = users::where('email',$email)
+        $req = users::select('id')
+                    ->where('email',$email)
                     ->get();
-
         // ->take(10) // limit 10
-        echo "result</br><pre>";
-        dd($req);
-
-        /*foreach ($flights as $flight) {
-            echo $flight->name;
-        }*/
+        if(count($req) > 0)
+            return true;
+        else
+            return false;
 
     }
 
-    private function checkpw($pw){
+    private function checkpw($email, $pw){
+        $res_pw = users::where('email',$email)->value('password');
+        return Hash::check($pw, $res_pw);
+    }
+    
+    public function loginOk(Request $request){
+        if($request->session()->has('email') == false){
+            echo "<script>alert('session 정보가 없음');</script>";
+            return redirect()->route('login');
+        }
 
+        $view = view('login/loginOk');
+        $view->session_email = $request->session()->get('email');
+
+        return $view;
     }
 }

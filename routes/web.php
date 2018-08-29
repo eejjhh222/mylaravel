@@ -11,6 +11,9 @@
 |
 */
 
+/**
+ * routing TEST
+*/
 Route::get('/', function () {
     return view('welcome');
 });
@@ -55,14 +58,31 @@ Route::post('postftest', 'requestCtr@postparams');
 
 Route::put('putparams', 'requestCtr@putparams');
 
+/**
+ * routing TEST END
+ */
 
-Route::get('join', function () {
-    return view('/join/join');
-});
+/**
+ * 회원가입
+*/
+Route::view('join','join/join')->name('join');
+
 Route::post('joinact', 'loginCtr@join');
 
-Route::get('login', function () {
-    return view('/login/login');
-});
+/**
+ * 회원가입 end
+ */
+
+/**
+ * 로그인
+*/
+
+Route::view('login','login/login')->name('login');
+Route::get('loginOk','loginCtr@loginOk')->name('loginOk');
 
 Route::post('loginact', 'loginCtr@login');
+
+
+/**
+ * 로그인 end
+ */

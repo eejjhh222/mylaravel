@@ -6,7 +6,11 @@
  * Time: 오후 4:38
  */
 //dd($_POST);
+
+
+
 ?>
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-login success!
+login success!<br>
+session email : {{ $session_email }}
