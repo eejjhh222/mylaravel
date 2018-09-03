@@ -10,16 +10,24 @@ class fileCtr extends Controller
     //
     public function upload(Request $request){
 //        echo "<pre>";
-//        $path = $request->file('imgFile')->store('imgFile');
 
-        if($request->hasFile('imgFile'))
+        $path = $request->file('imgFile')
+            ->storeAs('imgFile', $request->file('imgFile')->getClientOriginalName());
+
+        echo "img page<br>";
+        $str = "<img src='storage/".$path."'>";
+        echo $str;
+        exit;
+
+
+        if($request->hasFile('imgFiles'))
         {
-            $files = $request->file('imgFile');
+            $files = $request->file('imgFiles');
             foreach ($files as $file) {
                 $file_name = $file->store('');
             }
         }
-
+//        $request->file('imgFile')->getClientOriginalName();
 //        $path = Storage::putFile('imgFile', $request->file('imgFile'));
 //        print_r($path);
 //        $str = "<img src='storage/".$path."'>";

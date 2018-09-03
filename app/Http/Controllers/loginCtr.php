@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\users;
 use Hash;
+use Illuminate\Support\Facades\Storage;
 
 class loginCtr extends Controller
 {
@@ -53,6 +54,7 @@ class loginCtr extends Controller
         }
 
         $request->session()->put('email', $email);
+        $request->session()->put('id', $this->getId($email));
 
         return redirect()->route('loginOk');
     }
@@ -71,8 +73,13 @@ class loginCtr extends Controller
     }
 
     private function checkpw($email, $pw){
-        $res_pw = users::where('email',$email)->value('password');
+        $res_pw = users::where('email', $email)->value('password');
         return Hash::check($pw, $res_pw);
+    }
+
+    private function getId($email){
+        $id = users::where('email',$email)->value('id');
+        return $id;
     }
     
     public function loginOk(Request $request){
@@ -83,7 +90,25 @@ class loginCtr extends Controller
 
         $view = view('login/loginOk');
         $view->session_email = $request->session()->get('email');
+        $view->id = $request->session()->get('id');
 
         return $view;
     }
+
+    public function faceup(Request $request){
+//        dd($request);
+//        echo "<pre>";
+//        $res = $request->file('faceImg')->move('public',$request->file('faceImg')->getClientOriginalName());
+        $res = Storage::put('public/'.$request->file('faceImg')->getClientOriginalName(), '' );
+        if($res == true)
+            echo Storage::url('public/'.$request->file('faceImg')->getClientOriginalName());
+    }
+
+    public function viewImg(){
+        $files = Storage::allFiles('');
+        print_r($files);
+
+//        return $str;
+    }
+
 }
