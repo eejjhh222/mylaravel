@@ -82,7 +82,15 @@ Route::get('loginOk','loginCtr@loginOk')->name('loginOk');
 
 Route::post('loginact', 'loginCtr@login');
 
-
 /**
  * 로그인 end
  */
+
+/**
+ * 파일 업로드
+*/
+Route::view('fileForm','file/fileIn');
+Route::post('fileup', 'fileCtr@upload');
+/**
+ * 파일 업로드 끝
+*/
