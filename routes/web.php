@@ -94,3 +94,7 @@ Route::post('fileup', 'fileCtr@upload');
 /**
  * 파일 업로드 끝
 */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
