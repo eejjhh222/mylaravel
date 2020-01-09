@@ -11,6 +11,9 @@
 |
 */
 
+/**
+ * routing TEST
+*/
 Route::get('/', function () {
     return view('welcome');
 });
@@ -42,3 +45,56 @@ Route::get('/test/id/{id}/pw/{pw}', function ($id, $pw) {
 });
 
 Route::get('mk/{id?}', 'makingCtr@viewing');
+
+Route::get('sdb', 'makingCtr@selectDB');
+
+Route::get('modeldb', 'makingCtr@useDB');
+
+Route::get('ftest', 'requestCtr@defaultparams');
+
+Route::get('getftest', 'requestCtr@getparams');
+
+Route::post('postftest', 'requestCtr@postparams');
+
+Route::put('putparams', 'requestCtr@putparams');
+
+/**
+ * routing TEST END
+ */
+
+/**
+ * 회원가입
+*/
+Route::view('join','join/join')->name('join');
+
+Route::post('joinact', 'loginCtr@join');
+
+/**
+ * 회원가입 end
+ */
+
+/**
+ * 로그인
+*/
+
+Route::view('login','login/login')->name('login');
+Route::get('loginOk','loginCtr@loginOk')->name('loginOk');
+
+Route::post('loginact', 'loginCtr@login');
+
+/**
+ * 로그인 end
+ */
+
+/**
+ * 파일 업로드
+*/
+Route::view('fileForm','file/fileIn');
+Route::post('fileup', 'fileCtr@upload');
+/**
+ * 파일 업로드 끝
+*/
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
